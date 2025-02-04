@@ -19,7 +19,20 @@ jobs:
           git clone git@github.com:yangsx95/notes-life.git
           ls -la notes-life/  # 验证文件是否存在
 
-      - name: Clone notes Repo
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18  # 指定Node版本（与本地一致）
+          cache: 'npm'
+
+      - name: Install & Build
         run: |
-          git clone git@github.com:yangsx95/notes.git
-          ls -la notes/  # 验证文件是否存在
+          npm install
+          npm run build  # 执行Docusaurus构建
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # 自动注入，无需额外配置
+          publish_dir: ./build  # Docusaurus默认输出目录
+          keep_files: true  # 保留gh-pages分支历史
+          force_orphan: false
