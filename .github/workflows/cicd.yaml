@@ -1,24 +1,28 @@
-name: Pull from External Repo
+name: Deploy Docusarus To Github Pages
 
 on:
   workflow_dispatch:  # 允许手动触发
 
 jobs:
-  pull-external-repo:
+  pull-repo:
     runs-on: ubuntu-latest
     steps:
-      - name: Configure SSH
+      # 配置 SSH 环境
+      - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.WEBSITE_SSH_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519  # 必须设置权限！
+          ssh-keyscan github.com >> ~/.ssh/known_hosts  # 信任 GitHub 主机
 
-      - name: Clone Target Repo
+      # 克隆目标仓库
+      - name: Clone Target Repository
         run: |
           git clone git@github.com:yangsx95/notes-life.git
           ls -la notes-life/  # 验证文件是否存在
 
+      # 示例：处理克隆后的文件（按需修改）
       - name: Process Files
         run: |
-          cp -r notes-life ./local-docs/  # 示例：复制到本地目录
+          cp -r notes-life ./external-docs/
+          echo "文件已同步到 external-docs 目录"
