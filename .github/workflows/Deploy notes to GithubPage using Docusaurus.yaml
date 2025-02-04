@@ -19,12 +19,11 @@ jobs:
           git clone git@github.com:yangsx95/notes-life.git
           ls -la notes-life/  # 验证文件是否存在
 
-      - uses: actions/setup-node@v4
+      - name: Install & Build
+        uses: actions/setup-node@v4
         with:
           node-version: 21
           cache: 'npm'
-
-      - name: Install & Build
         run: |
           npx create-docusaurus@latest website classic
 
