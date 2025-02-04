@@ -43,6 +43,7 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+        working-directory: ./docusaurus
 
       - name: Generate static pages
         run: |
