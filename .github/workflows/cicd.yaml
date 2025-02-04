@@ -11,7 +11,7 @@ jobs:
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.WEBSITE_SSH_KEY }}" > ~/.ssh/id_ed25519
+          echo "${{ secrets.WEBSITE_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_ed25519  # 必须设置权限！
           ssh-keyscan github.com >> ~/.ssh/known_hosts  # 信任 GitHub 主机
 
