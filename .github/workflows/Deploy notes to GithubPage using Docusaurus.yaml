@@ -23,8 +23,3 @@ jobs:
         run: |
           git clone git@github.com:yangsx95/notes.git
           ls -la notes/  # 验证文件是否存在
-          
-      - name: Install and Build
-        run: |
-          npm install
-          npm run-script build
