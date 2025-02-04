@@ -39,11 +39,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 21
+          node-version: 18
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
       - name: Generate static pages
         run: |
-          npm run build
+          yarn build
           ls -la docusaurus/  # 验证文件是否存在
         working-directory: ./docusaurus
 
