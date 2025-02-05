@@ -38,6 +38,8 @@ jobs:
 
       - name: Generate static pages
         run: |
+          ls -al
+          ls -al ../
           yarn build
           ls -la build/  # 验证文件是否存在
 
