@@ -7,6 +7,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@docusaurus
+        with:
+          persist-credentials: false
+
       - name: Configure notes-life SSH
         run: |
           mkdir -p ~/.ssh
