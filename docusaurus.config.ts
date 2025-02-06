@@ -76,7 +76,7 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'notesLifeSidebar',
           position: 'left',
           label: '生活',
         },
